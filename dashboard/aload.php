@@ -54,7 +54,11 @@ include('../lang/'.$langid.'.php');
 // get system resource MikroTik
     $getresource = $API->comm("/system/resource/print");
     $resource = $getresource[0];
-
+    
+      $gethealth = $API->comm("/system/health/print");
+  $health = $gethealth[0];
+//print_r($gethealth);
+print_r($health);
 // get routeboard info
     $getrouterboard = $API->comm("/system/routerboard/print");
     $routerboard = $getrouterboard[0];
@@ -101,7 +105,9 @@ include('../lang/'.$langid.'.php');
                     <?php
                     echo $_cpu_load." : " . $resource['cpu-load'] . "%<br/>
                     ".$_free_memory." : " . formatBytes($resource['free-memory'], 2) . "<br/>
-                    ".$_free_hdd." : " . formatBytes($resource['free-hdd-space'], 2)
+                    ".$_free_hdd." : " . formatBytes($resource['free-hdd-space'], 2). "<br/>
+                    ".$gethealth[0]['name']." : " . $gethealth[0]['value']." V <br/>
+                    ".$gethealth[1]['name']." : " . $gethealth[1]['value']." C"
                     ?>
                 </span>
                 </div>
