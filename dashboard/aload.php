@@ -103,12 +103,19 @@ print_r($health);
               <div class="box-group-area">
                 <span >
                     <?php
-                    echo $_cpu_load." : " . $resource['cpu-load'] . "%<br/>
-                    ".$_free_memory." : " . formatBytes($resource['free-memory'], 2) . "<br/>
-                    ".$_free_hdd." : " . formatBytes($resource['free-hdd-space'], 2). "<br/>
-                    ".$gethealth[0]['name']." : " . $gethealth[0]['value']." V <br/>
-                    ".$gethealth[1]['name']." : " . $gethealth[1]['value']." C"
-                    ?>
+echo $_cpu_load . " : " . $resource['cpu-load'] . "%<br/>" .
+     $_free_memory . " : " . formatBytes($resource['free-memory'], 2) . "<br/>" .
+     $_free_hdd . " : " . formatBytes($resource['free-hdd-space'], 2);
+
+if ($gethealth[0]['name'] != "") {
+    echo "<br/>" . $gethealth[0]['name'] . " : " . $gethealth[0]['value'] . " V";
+}
+
+if ($gethealth[1]['name'] != "") {
+    echo "<br/>" . $gethealth[1]['name'] . " : " . $gethealth[1]['value'] . " C";
+}
+?>
+
                 </span>
                 </div>
               </div>
@@ -202,7 +209,7 @@ print_r($health);
                   </div>
                 </div>
                 
-                //baris2
+                
                 <div class="col-3 col-box-6">
                       <div class="box bg-blue bmh-75">
                         <a href="./?ppp=active&session=<?= $session; ?>">
