@@ -135,6 +135,12 @@ print_r($health);
   } elseif ($counthotspotactive > 1) {
     $hunit = "items";
   }
+  $pppactive = $API->comm("/ppp/active/print", array("count-only" => ""));
+  if ($pppactive < 2) {
+    $hunit = "item";
+  } elseif ($pppactive > 1) {
+    $hunit = "items";
+  }
 
   ?>
     
@@ -154,6 +160,7 @@ print_r($health);
                         </a>
                       </div>
                     </div>
+                   
                     <div class="col-3 col-box-6">
                     <div class="box bg-green bmh-75">
                       <a href="./?hotspot=users&profile=all&session=<?= $session; ?>">
@@ -194,6 +201,20 @@ print_r($health);
                     </a>
                   </div>
                 </div>
+                
+                //baris2
+                <div class="col-3 col-box-6">
+                      <div class="box bg-blue bmh-75">
+                        <a href="./?ppp=active&session=<?= $session; ?>">
+                          <h1><?= $counthotspotactive; ?>
+                              <span style="font-size: 15px;"><?= $pppactive; ?></span>
+                            </h1>
+                          <div>
+                            <i class="fa fa-laptop"></i> PPP Active
+                          </div>
+                        </a>
+                      </div>
+                    </div>
               </div>
             </div>
           </div>
